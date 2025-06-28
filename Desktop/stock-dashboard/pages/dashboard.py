@@ -234,3 +234,35 @@ else:
 # Footer
 st.sidebar.markdown("---")
 st.sidebar.markdown("💡 **Tip**: Indian stocks end with .NS (NSE) or .BO (BSE)")
+
+
+# Add to the very end of your sidebar in dashboard.py
+st.sidebar.markdown("---")
+
+# Theme toggle button
+if 'dark_mode' not in st.session_state:
+    st.session_state.dark_mode = False
+
+if st.sidebar.button(
+    "🌙 Dark Mode" if not st.session_state.dark_mode else "☀️ Light Mode",
+    key="theme_switch",
+    use_container_width=True
+):
+    st.session_state.dark_mode = not st.session_state.dark_mode
+    
+    if st.session_state.dark_mode:
+        # Apply dark theme
+        st._config.set_option('theme.base', 'dark')
+        st._config.set_option('theme.backgroundColor', '#0E1117')
+        st._config.set_option('theme.secondaryBackgroundColor', '#262730')
+        st._config.set_option('theme.textColor', '#FAFAFA')
+        st._config.set_option('theme.primaryColor', '#FF6B6B')
+    else:
+        # Apply light theme
+        st._config.set_option('theme.base', 'light')
+        st._config.set_option('theme.backgroundColor', '#FFFFFF')
+        st._config.set_option('theme.secondaryBackgroundColor', '#F0F2F6')
+        st._config.set_option('theme.textColor', '#262730')
+        st._config.set_option('theme.primaryColor', '#1f77b4')
+    
+    st.rerun()
