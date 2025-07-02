@@ -224,6 +224,3 @@ if not st.session_state.get("authentication_status"):
     - **Multi-Currency**: Prices automatically display in correct currency (₹, $, etc.)
     - **Technical Analysis**: Enable moving averages for trend analysis
     """)
-    
-    
-

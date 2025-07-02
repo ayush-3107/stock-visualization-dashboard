@@ -149,7 +149,7 @@ if 'profile_settings' not in st.session_state:
 st.markdown('<div class="profile-container">', unsafe_allow_html=True)
 
 # Profile tabs
-tab1, tab2, tab3 = st.tabs(["Profile Info", "Change Password", "Dashboard Settings"])
+tab1, tab2 = st.tabs(["Profile Info", "Change Password"])
 
 # TAB 1: Profile Information
 with tab1:
@@ -278,64 +278,3 @@ with tab2:
         - Use a mix of uppercase and lowercase letters
         - Avoid common passwords
         """)
-
-# TAB 3: Dashboard Settings (Simplified)
-with tab3:
-    st.subheader("Dashboard Settings")
-    
-    # Theme preference
-    theme_preference = st.selectbox(
-        "Default Theme",
-        ["Light", "Dark", "Auto"],
-        index=["Light", "Dark", "Auto"].index(st.session_state.profile_settings['theme_preference']),
-        help="Choose your preferred theme for the dashboard"
-    )
-    st.session_state.profile_settings['theme_preference'] = theme_preference
-    
-    # Default time period
-    default_period = st.selectbox(
-        "Default Time Period",
-        ["1 Week", "1 Month", "3 Months", "6 Months", "1 Year"],
-        index=["1 Week", "1 Month", "3 Months", "6 Months", "1 Year"].index(st.session_state.profile_settings['default_period']),
-        help="Default time period for stock charts"
-    )
-    st.session_state.profile_settings['default_period'] = default_period
-    
-    # Default chart type
-    default_chart = st.selectbox(
-        "Default Chart Type",
-        ["Line Chart", "Candlestick Chart"],
-        index=["Line Chart", "Candlestick Chart"].index(st.session_state.profile_settings['default_chart']),
-        help="Default chart type for stock visualization"
-    )
-    st.session_state.profile_settings['default_chart'] = default_chart
-    
-    # Moving averages default
-    show_ma_default = st.checkbox(
-        "Show Moving Averages by Default",
-        value=st.session_state.profile_settings['show_ma_default'],
-        help="Automatically show moving averages on charts"
-    )
-    st.session_state.profile_settings['show_ma_default'] = show_ma_default
-    
-    # Save and Reset buttons
-    st.markdown("---")
-    col1, col2, col3 = st.columns([1, 1, 1])
-    
-    with col1:
-        if st.button("Save Settings", type="primary", use_container_width=True):
-            st.success("✅ Settings saved successfully!")
-            st.balloons()
-    
-    with col3:
-        if st.button("Reset to Defaults", help="Reset all settings to default values", use_container_width=True):
-            st.session_state.profile_settings = {
-                'theme_preference': 'Light',
-                'default_period': '1 Month',
-                'default_chart': 'Line Chart',
-                'show_ma_default': False
-            }
-            st.success("Settings reset to defaults!")
-            st.rerun()
-
-st.markdown('</div>', unsafe_allow_html=True)

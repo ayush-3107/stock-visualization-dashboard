@@ -7,3 +7,5 @@ config.yaml
 .streamlit/
 *.log
 .DS_Store
+user_favourites/
+profile_pics/
